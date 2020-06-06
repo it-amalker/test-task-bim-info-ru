@@ -1,10 +1,13 @@
 import React from 'react';
-import data from '../data/small_data_persons.json';
 
 type PersonType = {
-  ID: string;
-  Name: string;
-  Age: string;
+  id: number;
+  name: string;
+  age: number;
+};
+
+type FilterType = {
+  filterBy: string;
 };
 
 type TableProps = {
@@ -25,11 +28,11 @@ const Table: React.FC<TableProps> = ({ persons, setPersons }) => {
           </tr>
         </thead>
         <tbody>
-          {persons.map(({ ID, Name, Age }) => (
-            <tr key={ID}>
-              <td>{ID}</td>
-              <td>{Name}</td>
-              <td>{Age}</td>
+          {persons.map(({ id, name, age }) => (
+            <tr key={id}>
+              <td>{id}</td>
+              <td>{name}</td>
+              <td>{age}</td>
             </tr>
           ))}
         </tbody>

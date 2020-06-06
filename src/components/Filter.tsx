@@ -19,9 +19,9 @@ const Filter: React.FC<FilterProps> = ({ filter, setFilter }) => {
       {filter.filterBy ? null : (
         <option value="Choose filter">Choose filter</option>
       )}
-      <option value="ID">ID</option>
-      <option value="Name">Name</option>
-      <option value="Age">Age</option>
+      <option value="id">ID</option>
+      <option value="name">Name</option>
+      <option value="age">Age</option>
     </select>
   );
 };
