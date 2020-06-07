@@ -1,7 +1,7 @@
 import React from 'react';
-import { TableProps } from '../types/props';
+import { PersonProps } from '../types/props';
 
-const Table: React.FC<TableProps> = ({ persons, setPersons }) => {
+const Table: React.FC<PersonProps> = ({ persons, setPersons }) => {
   const removePerson = (id: number) => () => {
     const filtered = persons.filter((p) => p.id !== id);
     setPersons(filtered);
