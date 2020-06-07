@@ -2,6 +2,11 @@ import React from 'react';
 import { TableProps } from '../types/props';
 
 const Table: React.FC<TableProps> = ({ persons, setPersons }) => {
+  const removePerson = (id: number) => () => {
+    const filtered = persons.filter((p) => p.id !== id);
+    setPersons(filtered);
+  };
+
   const renderTable = (): JSX.Element => {
     return (
       <table className="persons-table">
@@ -19,6 +24,11 @@ const Table: React.FC<TableProps> = ({ persons, setPersons }) => {
               <td>{id}</td>
               <td>{name}</td>
               <td>{age}</td>
+              <td>
+                <button type="button" onClick={removePerson(id)}>
+                  Remove
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
