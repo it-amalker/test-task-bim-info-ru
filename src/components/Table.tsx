@@ -6,8 +6,8 @@ type PersonType = {
   age: number;
 };
 
-type FilterType = {
-  filterBy: string;
+type SortType = {
+  sortBy: string;
 };
 
 type TableProps = {
