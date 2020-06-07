@@ -3,20 +3,11 @@ import { sortBy } from 'lodash';
 import Table from './Table';
 import Sort from './Sort';
 import pesrsonsData from '../data/small_data_persons.json';
+import { SortType, PersonType } from '../types/types';
 
 const data = pesrsonsData.map(({ ID, Name, Age }) => {
   return { id: Number(ID), name: Name, age: Number(Age) };
 });
-
-type SortType = {
-  sortBy: string;
-};
-
-type PersonType = {
-  id: number;
-  name: string;
-  age: number;
-};
 
 const App: React.FC = () => {
   const [persons, setPersons] = useState<PersonType[]>(data);
@@ -24,8 +15,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     if (sort) {
-      const sortedPersons = sortBy(persons, sort.sortBy);
-      setPersons(sortedPersons);
+      setPersons((p) => sortBy(p, sort.sortBy));
     }
   }, [sort]);
 
