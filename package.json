@@ -1,6 +1,6 @@
 {
   "name": "test-task-bim-info-ru",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Test task from bim-info.ru",
   "main": "index.ts",
   "scripts": {
@@ -55,6 +55,7 @@
     "lodash": "^4.17.15",
     "normalize.css": "^8.0.1",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-hook-form": "^5.7.2"
   }
 }
