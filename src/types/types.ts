@@ -4,6 +4,12 @@ export type PersonType = {
   age: number;
 };
 
+export type CreatePersonType = {
+  id: string;
+  name: string;
+  age: string;
+};
+
 export type SortType = {
   sortBy: string;
 };
