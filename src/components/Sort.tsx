@@ -1,19 +1,13 @@
 import React from 'react';
+import { SortProps } from '../types/props';
 
-type SortType = {
-  sortBy: string;
-};
-
-type FilterProps = {
-  sort: SortType;
-  setSort: (sort: SortType) => void;
-};
-
-const Sort: React.FC<FilterProps> = ({ sort, setSort }) => {
+const Sort: React.FC<SortProps> = ({ sort, setSort }) => {
   const changeFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSort({ sortBy: e.target.value });
   };
+
   console.log(sort);
+
   return (
     <select onChange={changeFilter}>
       {sort.sortBy ? null : (

@@ -1,19 +1,5 @@
 import React from 'react';
-
-type PersonType = {
-  id: number;
-  name: string;
-  age: number;
-};
-
-type SortType = {
-  sortBy: string;
-};
-
-type TableProps = {
-  persons: PersonType[];
-  setPersons: (data: PersonType[]) => void;
-};
+import { TableProps } from '../types/props';
 
 const Table: React.FC<TableProps> = ({ persons, setPersons }) => {
   const renderTable = (): JSX.Element => {
