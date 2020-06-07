@@ -2,16 +2,9 @@ import React, { useState } from 'react';
 import { sortBy } from 'lodash';
 import { useForm } from 'react-hook-form';
 
-import * as yup from 'yup';
 import { CreatePersonProps } from '../types/props';
 import { CreatePersonType } from '../types/types';
 import { FormData } from '../types/form';
-
-const ValidationSchema = yup.object().shape({
-  id: yup.number().required(),
-  name: yup.string().max(100).required(),
-  age: yup.number().max(1000).required(),
-});
 
 const CreatePerson: React.FC<CreatePersonProps> = ({
   persons,
@@ -26,7 +19,7 @@ const CreatePerson: React.FC<CreatePersonProps> = ({
     reset,
     setError,
     formState,
-  } = useForm<FormData>({ validationSchema: ValidationSchema });
+  } = useForm<FormData>();
 
   const { isSubmitting } = formState;
 
@@ -35,20 +28,15 @@ const CreatePerson: React.FC<CreatePersonProps> = ({
   };
 
   const createPerson = ({ id, name, age }: CreatePersonType) => {
-    const isUniqueId = persons.find((p) => p.id === +id);
-    if (isUniqueId) {
-      setError('id', 'notUniqueId', 'ID is not unique');
+    const newPersons = [...persons, { id: +id, name, age: +age }];
+    if (sort) {
+      const sortedPersons = sortBy(newPersons, sort.sortBy);
+      setPersons(sortedPersons);
     } else {
-      const newPersons = [...persons, { id: +id, name, age: +age }];
-      if (sort) {
-        const sortedPersons = sortBy(newPersons, sort.sortBy);
-        setPersons(sortedPersons);
-      } else {
-        setPersons(newPersons);
-      }
-      reset();
-      setFormShow(false);
+      setPersons(newPersons);
     }
+    reset();
+    setFormShow(false);
   };
 
   const renderForm = () => (
@@ -65,7 +53,17 @@ const CreatePerson: React.FC<CreatePersonProps> = ({
             id="id"
             className="create-input"
             placeholder="123"
-            ref={register}
+            ref={register({
+              required: 'Id field is required.',
+              pattern: {
+                value: /^[0-9]+$/,
+                message: 'Id must be a number',
+              },
+              validate: (id: string) => {
+                const isUniqueId = !persons.find((p) => p.id === +id);
+                return isUniqueId;
+              },
+            })}
           />
         </label>
         <label htmlFor="name">
@@ -75,7 +73,13 @@ const CreatePerson: React.FC<CreatePersonProps> = ({
             id="name"
             className="create-input"
             placeholder="John"
-            ref={register}
+            ref={register({
+              required: 'Name field is required.',
+              maxLength: {
+                value: 100,
+                message: 'Name exceed max length.',
+              },
+            })}
           />
         </label>
         <label htmlFor="age">
@@ -84,23 +88,37 @@ const CreatePerson: React.FC<CreatePersonProps> = ({
             name="age"
             id="age"
             className="create-input"
-            placeholder="35.0001"
-            ref={register}
-            pattern="^\d*(\.\d{0,4})?$"
+            placeholder="35"
+            ref={register({
+              required: 'Age field is required.',
+              pattern: {
+                value: /^\d*(\.\d{0,4})?$/,
+                message: 'Age must be number (max 4 decimal places).',
+              },
+              validate: (n: string) => +n <= 1000,
+            })}
           />
         </label>
         <button type="submit" className="submit-btn" disabled={isSubmitting}>
           Create
         </button>
       </form>
-      {errors.id && errors.id.type === 'notUniqueId' && (
+      {errors.id && (
         <span className="error-container">{errors.id.message}</span>
+      )}
+      {errors.id && errors.id.type === 'validate' && (
+        <span className="error-container">ID is not unique</span>
       )}
       {errors.name && (
         <span className="error-container">{errors.name.message}</span>
       )}
       {errors.age && (
         <span className="error-container">{errors.age.message}</span>
+      )}
+      {errors.age && errors.age.type === 'validate' && (
+        <span className="error-container">
+          Age must be a number (max 1000).
+        </span>
       )}
     </>
   );
