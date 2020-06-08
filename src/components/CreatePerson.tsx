@@ -32,12 +32,28 @@ const CreatePerson: React.FC<CreatePersonProps> = ({
     setFormShow(false);
   };
 
-  const renderForm = () => <Form persons={persons} onSubmit={createPerson} />;
+  const renderForm = () => (
+    <div className="table-container">
+      <table className="persons-table">
+        <thead />
+        <tbody>
+          <tr>
+            <td colSpan={4}>
+              <Form persons={persons} onSubmit={createPerson} />
+            </td>
+          </tr>
+        </tbody>
+        <tfoot />
+      </table>
+    </div>
+  );
 
   const renderButton = () => (
-    <button type="button" onClick={handleClick}>
-      Create person
-    </button>
+    <div className="create-container">
+      <button className="create-person-btn" type="button" onClick={handleClick}>
+        Create new person
+      </button>
+    </div>
   );
 
   return <>{formShow ? renderForm() : renderButton()}</>;

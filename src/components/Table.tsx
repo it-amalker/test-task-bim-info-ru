@@ -40,46 +40,56 @@ const Table: React.FC<CreatePersonProps> = ({ persons, setPersons, sort }) => {
 
   const renderTable = (): JSX.Element => {
     return (
-      <table className="persons-table">
-        <caption className="persons-table-caption">Persons table</caption>
-        <thead>
-          <tr>
-            <th className="person-id">ID</th>
-            <th className="person-name">Name</th>
-            <th className="person-age">Age</th>
-          </tr>
-        </thead>
-        <tbody>
-          {persons.map(({ id, name, age }) => {
-            if (editingPerson && editingPerson.id === id) {
+      <div className="table-container">
+        <table className="persons-table">
+          <thead>
+            <tr className="caption-row">
+              <th>ID</th>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Remove</th>
+            </tr>
+          </thead>
+          <tbody>
+            {persons.map(({ id, name, age }) => {
+              if (editingPerson && editingPerson.id === id) {
+                return (
+                  <tr key={id}>
+                    <td colSpan={4}>
+                      <Form
+                        persons={persons}
+                        onSubmit={editPerson}
+                        editingPerson={editingPerson}
+                      />
+                    </td>
+                  </tr>
+                );
+              }
               return (
-                <tr key={id}>
-                  <td colSpan={3}>
-                    <Form
-                      persons={persons}
-                      onSubmit={editPerson}
-                      editingPerson={editingPerson}
-                    />
+                <tr
+                  className="table-row"
+                  key={id}
+                  onClick={handleClick({ id, name, age })}
+                >
+                  <td className="table-id">{id}</td>
+                  <td className="table-name">{name}</td>
+                  <td className="table-age">{age}</td>
+                  <td className="table-remove">
+                    <button
+                      className="remove-btn"
+                      type="button"
+                      onClick={removePerson(id)}
+                    >
+                      &#10008;
+                    </button>
                   </td>
                 </tr>
               );
-            }
-            return (
-              <tr key={id} onClick={handleClick({ id, name, age })}>
-                <td>{id}</td>
-                <td>{name}</td>
-                <td>{age}</td>
-                <td>
-                  <button type="button" onClick={removePerson(id)}>
-                    Remove
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-        <tfoot />
-      </table>
+            })}
+          </tbody>
+          <tfoot />
+        </table>
+      </div>
     );
   };
 

@@ -1,4 +1,183 @@
 #app {
+  padding: 20px 10px;
   width: 100vw;
   height: 100vh;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.table-container {
+  display: flex;
+  justify-content: center;
+}
+
+.persons-table {
+  width: 80%;
+  border-collapse: collapse;
+}
+
+.caption-row {
+  background-color: #84a2cb;
+}
+
+.caption-row th {
+  padding: 10px 5px;
+  border: 1px solid #000;
+}
+
+.table-row {
+  background-color: #b8d1f3;
+}
+
+.table-row:nth-child(2n) {
+  background-color: #dae5f4;
+}
+
+.table-row:hover {
+  font-weight: bold;
+  background-color: #84a2cb;
+}
+
+.table-row td {
+  height: 20px;
+  padding: 7px 5px;
+  border: 1px solid #4e95f4;
+}
+
+.table-id {
+  width: 15%;
+  text-align: center;
+}
+
+.table-name {
+  width: 60%;
+}
+
+.table-age {
+  width: 15%;
+  text-align: center;
+}
+
+.table-remove {
+  width: 10%;
+}
+
+.remove-btn {
+  display: block;
+  margin: 0 auto;
+  width: 30px;
+  color: grey;
+
+  background-color: transparent;
+  border: none;
+}
+
+.remove-btn:hover {
+  color: red;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.form {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-input {
+  border: 1px solid #4e95f4;
+  margin: 0;
+  padding: 5px 5px;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  background-color: #efefef;
+  border: 2px solid orange;
+}
+
+.form-input-id {
+  width: 15%;
+}
+
+.form-input-name {
+  width: 60%;
+}
+
+.form-input-age {
+  width: 15%;
+}
+
+.submit-btn {
+  width: 10%;
+  height: 100%;
+
+  background-color: #ffa500b8;
+  border: 2px solid #060606b0;
+}
+
+.submit-btn:hover {
+  font-weight: bold;
+  background-color: #ffa500;
+  cursor: pointer;
+}
+
+.errors {
+  display: flex;
+  justify-content: center;
+}
+
+.error-container {
+  margin-right: 5px;
+  color: red;
+  font-size: small;
+  font-weight: bold;
+}
+
+.create-container {
+  display: flex;
+  justify-content: center;
+}
+
+.create-person-btn {
+  margin: 10px auto;
+  margin-top: 0;
+  padding: 5px 50px;
+
+  font-weight: bold;
+  background-color: #84a2cb;
+
+  border: 1px solid #000;
+}
+
+.create-person-btn:hover {
+  background-color: #627a9c;
+  cursor: pointer;
+}
+
+.sort-container {
+  width: 80%;
+  margin: auto;
+  margin-bottom: 20px;
+
+  display: flex;
+  align-items: center;
+}
+
+.sort-select {
+  width: 120px;
+
+  cursor: pointer;
+}
+
+.sort-name {
+  margin-right: 10px;
+
+  font-weight: bold;
 }

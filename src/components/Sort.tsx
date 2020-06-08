@@ -7,16 +7,19 @@ const Sort: React.FC<SortProps> = ({ sort, setSort }) => {
   };
 
   return (
-    <form>
-      <select onChange={changeFilter}>
-        {sort.sortBy ? null : (
-          <option value="Choose filter">Choose filter</option>
-        )}
-        <option value="id">ID</option>
-        <option value="name">Name</option>
-        <option value="age">Age</option>
-      </select>
-    </form>
+    <div className="sort-container">
+      <span className="sort-name">Sort by:</span>
+      <form>
+        <select className="sort-select" onChange={changeFilter}>
+          {sort.sortBy ? null : (
+            <option value="Choose filter">Choose sort</option>
+          )}
+          <option value="id">ID</option>
+          <option value="name">Name</option>
+          <option value="age">Age</option>
+        </select>
+      </form>
+    </div>
   );
 };
 

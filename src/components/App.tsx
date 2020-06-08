@@ -21,7 +21,7 @@ const App: React.FC = () => {
   }, [sort]);
 
   return (
-    <div>
+    <div className="app-container">
       <Sort sort={sort} setSort={setSort} />
       <CreatePerson persons={persons} setPersons={setPersons} sort={sort} />
       <Table persons={persons} setPersons={setPersons} sort={sort} />

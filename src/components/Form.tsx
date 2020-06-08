@@ -11,21 +11,21 @@ const Form: React.FC<FormProps> = ({ persons, onSubmit, editingPerson }) => {
 
   return (
     <>
-      <form
-        className="form"
-        autoComplete="off"
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <label htmlFor="id">
+      <div className="form-container">
+        <form
+          className="form"
+          autoComplete="off"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <input
             defaultValue={editingPerson ? editingPerson.id : ''}
             type="text"
             name="id"
             id="id"
-            className="create-input"
+            className="form-input form-input-id"
             placeholder="123"
             ref={register({
-              required: 'Id field is required.',
+              required: 'Id field is required',
               pattern: {
                 value: /^[0-9]+$/,
                 message: 'Id must be a number',
@@ -40,61 +40,59 @@ const Form: React.FC<FormProps> = ({ persons, onSubmit, editingPerson }) => {
               },
             })}
           />
-        </label>
-        <label htmlFor="name">
           <input
             defaultValue={editingPerson ? editingPerson.name : ''}
             type="text"
             name="name"
             id="name"
-            className="create-input"
+            className="form-input form-input-name"
             placeholder="John"
             ref={register({
-              required: 'Name field is required.',
+              required: 'Name field is required',
               maxLength: {
                 value: 100,
-                message: 'Name exceed max length.',
+                message: 'Name exceed max length',
               },
             })}
           />
-        </label>
-        <label htmlFor="age">
           <input
             defaultValue={editingPerson ? editingPerson.age : ''}
             type="text"
             name="age"
             id="age"
-            className="create-input"
+            className="form-input form-input-age"
             placeholder="35"
             ref={register({
               required: 'Age field is required.',
               pattern: {
                 value: /^\d*(\.\d{0,4})?$/,
-                message: 'Age must be a number (max 4 decimal places).',
+                message: 'Age must be a number (max 4 decimal places)',
               },
               validate: (n: string) => +n <= 1000,
             })}
           />
-        </label>
-        <button type="submit" className="submit-btn" disabled={isSubmitting}>
-          Save
-        </button>
-      </form>
-      {errors.id && (
-        <span className="error-container">{errors.id.message}</span>
-      )}
-      {errors.id && errors.id.type === 'validate' && (
-        <span className="error-container">ID is not unique.</span>
-      )}
-      {errors.name && (
-        <span className="error-container">{errors.name.message}</span>
-      )}
-      {errors.age && (
-        <span className="error-container">{errors.age.message}</span>
-      )}
-      {errors.age && errors.age.type === 'validate' && (
-        <span className="error-container">Max age 1000.</span>
-      )}
+          <button type="submit" className="submit-btn" disabled={isSubmitting}>
+            Save
+          </button>
+        </form>
+      </div>
+      <div className="errors">
+        {errors.id && (
+          <div className="error-container">{errors.id.message}</div>
+        )}
+        {errors.id && errors.id.type === 'validate' && (
+          <div className="error-container">ID is not unique</div>
+        )}
+        {errors.name && (
+          <div className="error-container">{errors.name.message}</div>
+        )}
+        {errors.age && (
+          <div className="error-container">{errors.age.message}</div>
+        )}
+        {errors.age && errors.age.type === 'validate' && (
+          <div className="error-container">Max age 1000</div>
+        )}
+      </div>
     </>
   );
 };
