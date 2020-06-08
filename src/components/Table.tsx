@@ -27,7 +27,11 @@ const Table: React.FC<CreatePersonProps> = ({ persons, setPersons, sort }) => {
 
   const editPerson = ({ id, name, age }: CreatePersonType) => {
     const editedPerson = { id: +id, name, age: +age };
-    const newPersons = persons.map((p) => (p.id === +id ? editedPerson : p));
+    const newPersons = persons.map((p) =>
+      p.id === editingPerson!.id ? editedPerson : p,
+    );
+
+    console.log('newPersons ', newPersons);
     if (sort) {
       const sortedPersons = sortBy(newPersons, sort.sortBy);
       setPersons(sortedPersons);
