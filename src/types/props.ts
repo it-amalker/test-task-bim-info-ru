@@ -1,4 +1,4 @@
-import { PersonType, SortType } from './types';
+import { PersonType, SortType, CreatePersonType } from './types';
 
 export type PersonProps = {
   persons: PersonType[];
@@ -11,3 +11,9 @@ export type SortProps = {
 };
 
 export type CreatePersonProps = PersonProps & { sort: SortType };
+
+export type FormProps = {
+  persons: PersonType[];
+  onSubmit: ({ id, name, age }: CreatePersonType) => void;
+  editingPerson?: PersonType;
+};
