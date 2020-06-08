@@ -24,7 +24,7 @@ const App: React.FC = () => {
     <div>
       <Sort sort={sort} setSort={setSort} />
       <CreatePerson persons={persons} setPersons={setPersons} sort={sort} />
-      <Table persons={persons} setPersons={setPersons} />
+      <Table persons={persons} setPersons={setPersons} sort={sort} />
     </div>
   );
 };
