@@ -151,13 +151,13 @@
   padding: 5px 50px;
 
   font-weight: bold;
-  background-color: #84a2cb;
+  background-color: #dae5f4;
 
   border: 1px solid #000;
 }
 
 .create-person-btn:hover {
-  background-color: #627a9c;
+  background-color: #b8d1f3;
   cursor: pointer;
 }
 
@@ -171,8 +171,6 @@
 }
 
 .sort-select {
-  width: 120px;
-
   cursor: pointer;
 }
 
