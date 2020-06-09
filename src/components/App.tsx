@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { sortBy } from 'lodash';
 import Table from './Table';
 import Sort from './Sort';
-import pesrsonsData from '../data/small_data_persons.json';
+import pesrsonsData from '../data/big_data_persons.json';
 import { SortType, PersonType } from '../types/types';
 import CreatePerson from './CreatePerson';
 
