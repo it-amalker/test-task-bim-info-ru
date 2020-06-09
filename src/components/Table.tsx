@@ -31,7 +31,6 @@ const Table: React.FC<CreatePersonProps> = ({ persons, setPersons, sort }) => {
       p.id === editingPerson!.id ? editedPerson : p,
     );
 
-    console.log('newPersons ', newPersons);
     if (sort) {
       const sortedPersons = sortBy(newPersons, sort.sortBy);
       setPersons(sortedPersons);
